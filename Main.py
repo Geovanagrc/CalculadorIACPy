@@ -5,8 +5,21 @@ import math
 
 #Função para carregar dados
 def carregar_dados():
-    print("Ok")
-
+    global iac
+    global altura
+    global quadril
+    global genero
+    with open ('Historico'+'.txt','r') as arquivo:
+        iac = arquivo.readline()
+        altura = arquivo.readline()
+        quadril = arquivo.readline()
+        genero = arquivo.readline()
+    entradaAltura.delete(0,tk.END)#Do primeiro caractere ao ultimo
+    entradaQuadril.delete(0,tk.END)
+    entradaAltura.insert(0,altura)
+    entradaQuadril.insert(0,quadril)
+    selecao.set(StringVar(genero))
+    calcular()    
 #Função gravar_dados
 def gravar_dados():
     global iac
@@ -14,10 +27,10 @@ def gravar_dados():
     global quadril
     global genero
     with open('Historico'+'.txt','w') as historico:
-        historico.write(f'\nIac: {str(iac)}')
-        historico.write(f'\nAltura: {str(altura)}')
-        historico.write(f'\nAltura: {str(quadril)}')
-        historico.write(f'\nGenero: {str(genero)}')
+        historico.write(f'{str(iac)}\n')
+        historico.write(f'{str(altura)}\n')
+        historico.write(f'{str(quadril)}\n')
+        historico.write(f'{str(genero)}\n')
 
 #CONFIG TELA
 
@@ -49,7 +62,7 @@ def calcular():
         # Calcula o IAC
         iac = (quadril / (altura * raiz_altura)) - 18
 
-        # Obtem a seleÃ§Ã£o do Gênero
+        # Obtem a seleçao do Gênero
         genero = selecao.get()
 
         # Classificação do IAC com base no Gênero
@@ -94,17 +107,17 @@ def calcular():
                 cor_classificacao = "#808080"  # Cinza
         else:
             showinfo('Erro','Por favor, selecione o gênero',icon='info')  # Exibe a janela de erro
-            classificacao = "selecione o gÃªnero"
+            classificacao = "selecione o gênero"
             cor_classificacao = "#808080"  # Cinza
 
-        # Atualiza a label de saÃ­da com o resultado
+        # Atualiza a label de sai­da com o resultado
         saida.config(text=f"IAC: {iac:.2f} - {classificacao}")  # Mostra o resultado com 2 casas decimais
 
-        # Atualiza o quadrado colorido ao lado da classificaÃ§Ã£o
+        # Atualiza o quadrado colorido ao lado da classificação
         quadrado.config(bg=cor_classificacao)
     except ValueError:
-        showinfo('Erro','insira valores vÃ¡lidos (Ex: 1.67).',icon='info')
-        saida.config(text="Por favor, insira valores vÃ¡lidos.")  # Em caso de erro na conversÃ£o dos valores
+        showinfo('Erro','insira valores validos (Ex: 1.67).',icon='info')
+        saida.config(text="Por favor, insira valores validos.")  # Em caso de erro na conversÃ£o dos valores
 
 #LABEL QUADRIL
 
@@ -128,7 +141,7 @@ entradaAltura.grid(row=1, column=1, padx=10, pady=10)
 
 #LABEL SELEção GeNERO
 
-labelGenero = Label(janela, text="Genero:", bg="#2e2e2e", fg="white", font=("Arial", 12))
+labelGenero = Label(janela, text="Gênero:", bg="#2e2e2e", fg="white", font=("Arial", 12))
 labelGenero.grid(row=2, column=0, padx=10, pady=10, sticky='e')
 
 #Variavel de controle para o genero
