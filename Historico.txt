@@ -1,0 +1,5 @@
+
+Iac: 42.77502378136103
+Altura: 1.6
+Altura: 123.0
+Genero: Mulher
