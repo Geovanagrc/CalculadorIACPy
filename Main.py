@@ -1,6 +1,6 @@
 import tkinter as tk
 from tkinter import *
-from tkinter.messagebox import showinfo  # ImportaÃ§Ã£o correta do showinfo
+from tkinter.messagebox import showinfo  # Importação correta do showinfo
 import math
 
 #Função para carregar dados
@@ -18,7 +18,7 @@ def carregar_dados():
     entradaQuadril.delete(0,tk.END)
     entradaAltura.insert(0,altura)
     entradaQuadril.insert(0,quadril)
-    selecao.set(StringVar(genero))
+    selecao.set(genero)
     calcular()    
 #Função gravar_dados
 def gravar_dados():
@@ -30,7 +30,7 @@ def gravar_dados():
         historico.write(f'{str(iac)}\n')
         historico.write(f'{str(altura)}\n')
         historico.write(f'{str(quadril)}\n')
-        historico.write(f'{str(genero)}\n')
+        historico.write(f'{str(genero)}')
 
 #CONFIG TELA
 
